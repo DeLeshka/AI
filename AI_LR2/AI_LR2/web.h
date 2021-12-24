@@ -6,6 +6,7 @@ class Web
 public:
 	void Train();
 	void RecognizeAll();
+	void RecognizeFile();
 private:
 	int mul[5][5];
 	int weight[5][5];

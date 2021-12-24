@@ -11,7 +11,8 @@ int main()
 	while (true)
 	{
 		cout << "1 - Обучить\n"
-			 << "2 - Распознать символ\n"
+			 << "2 - Распознать все файлы\n"
+			 << "3 - Распознать конкретный файл\n"
 			 << "0 - Выход\n"
 			 << "Выберите действие: ";
 		cin >> command;
@@ -27,6 +28,12 @@ int main()
 		{
 			Web web;
 			web.RecognizeAll();
+			break;
+		}
+		case 3:
+		{
+			Web web;
+			web.RecognizeFile();
 			break;
 		}
 		case 0:

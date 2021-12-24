@@ -97,10 +97,10 @@ void Web::Train()
 		for (int j = 0; j < 5; j++)
 			this->weight[i][j] = 0;
 
-	string filenames_God[7];
+	string filenames_Good[7];
 	for (int i = 0; i < 7; i++)
 	{
-		filenames_God[i] = "Good/" + to_string(i + 1) + ".txt";
+		filenames_Good[i] = "Good/" + to_string(i + 1) + ".txt";
 	}
 
 	string filenames_Bad[41];
@@ -131,7 +131,7 @@ void Web::Train()
 		}
 		else
 		{
-			ifstream load_input(filenames_God[k - 41]);
+			ifstream load_input(filenames_Good[k - 41]);
 			for (int i = 0; i < 5; i++)
 				for (int j = 0; j < 5; j++)
 					load_input >> p_mem_input[i][j];
@@ -139,7 +139,7 @@ void Web::Train()
 			Inputs.push_back(p_mem_input);
 		}
 	}
-	int endstudy;
+	int endstudy = 0;
 	int round = 0;
 	do
 	{
@@ -161,7 +161,7 @@ void Web::Train()
 		round += 1;
 		cout << round << " раунд завершен" << endl;
 	} while (endstudy != 0);
-	cout << "Обучение окончено!" << endl;
+	cout << "Обучение окончено." << endl;
 
 	cout << "Введите файл для сохранения веса: ";
 	string filename_save;
@@ -200,4 +200,16 @@ void Web::RecognizeAll()
 		cout << "Файл Bad\\" << i << ".txt";
 		this->Recognize();
 	}
+}
+
+void Web::RecognizeFile()
+{
+	this->Load_Weight();
+	cout << "Введите имя файла: ";
+	string file_name;
+	cin >> file_name;
+	ifstream input_file(file_name);
+	this->Fill_input(input_file);
+	cout << "Файл " << file_name;
+	this->Recognize();
 }
